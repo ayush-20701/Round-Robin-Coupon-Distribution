@@ -2,6 +2,15 @@ import axios from "axios";
 
 const API_URL = "https://round-robin-coupon-distribution.onrender.com/api";
 
+export const getCoupons = async () => {
+    try {
+        const response = await axios.get(`${API_URL}/coupons`);
+        return response.data;
+    } catch (error) {
+        return [];
+    }
+};
+
 export const claimCoupon = async () => {
     try {
         const response = await axios.get(`${API_URL}/claim`, { withCredentials: true });

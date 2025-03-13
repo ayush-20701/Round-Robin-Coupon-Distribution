@@ -48,4 +48,14 @@ router.get("/claim", async (req, res) => {
     }
 });
 
+router.get("/coupons", async (req, res) => {
+    try {
+        const availableCoupons = await Coupon.find({ assignedTo: null }); // Fetch unclaimed coupons
+        res.json(availableCoupons);
+    } catch (error) {
+        console.error("Error fetching coupons:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
 module.exports = router;
